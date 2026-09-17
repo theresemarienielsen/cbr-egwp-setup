@@ -238,12 +238,14 @@
     }
 
     /* Chips */
-    .chip-wrap { display: flex; flex-wrap: wrap; gap: 4px; align-items: center; }
+    .chip-wrap { display: flex; flex-wrap: nowrap; gap: 4px; align-items: center; }
+    .codes-scroll { overflow-x: auto; overflow-y: hidden; min-height: 32px; max-height: 32px; display: flex; align-items: center; padding: 0 8px; box-sizing: border-box; scrollbar-width: none; -ms-overflow-style: none; }
+    .codes-scroll::-webkit-scrollbar { display: none; }
     .chip { display: inline-flex; align-items: center; gap: 8px; padding: 0 0 0 8px; background: #fff; border: 2px solid #767471; border-radius: 8px; height: 24px; font-size: 14px; font-weight: 400; color: #1a1a19; white-space: nowrap; overflow: hidden; box-sizing: border-box; }
     .chip.chip-readonly { padding: 0 8px; }
     .chip-x { display: inline-flex; align-items: center; justify-content: center; align-self: stretch; width: 24px; flex-shrink: 0; background: #ccc9c6; border: none; cursor: pointer; color: #1a1a19; font-size: 13px; line-height: 1; padding: 0; }
     .chip-x:hover { background: #b8b4b0; }
-    .codes-cell { cursor:pointer; }
+    .codes-cell { cursor:pointer; padding:0 !important; overflow:hidden; }
     .codes-cell:hover { background:#f8f9fa; }
     .code-picker-dropdown { position:fixed; background:#fff; border:1px solid var(--border); border-radius:6px; box-shadow:0 4px 16px rgba(0,0,0,0.12); z-index:9999; width:300px; overflow:hidden; }
     .code-picker-search { width:100%; box-sizing:border-box; padding:8px 10px; border:none; border-bottom:1px solid var(--border-light); font-size:13px; outline:none; }
@@ -408,14 +410,13 @@
     .sync-faf-btn:hover { background:#f8f7f5; }
     .sync-label { font-size:12px; color:var(--text-secondary); }
 
-    .as-bl-chip { display:inline-flex; flex-direction:column; align-items:flex-start; gap:2px; background:#f2efeb; border:1px dashed #767471; border-radius:8px; padding:4px 10px; font-size:13px; }
-    .as-bl-label { font-size:12px; font-weight:700; color:var(--text-secondary); margin-right:2px; }
-    .as-frd-title { font-size:22px; font-weight:700; margin-bottom:20px; }
-    .as-section-title { font-size:18px; font-weight:500; margin:32px 0 24px; padding-bottom:0; border-bottom:none; }
-    .as-fields-row { display:flex; align-items:flex-end; gap:16px; flex-wrap:wrap; margin-bottom:24px; }
+    .as-bl-chip { display:inline-flex; align-items:center; background:#f2efeb; border:1px dashed #767471; border-radius:8px; padding:0 10px; font-size:14px; height:32px; white-space:nowrap; box-sizing:border-box; }
+    .as-frd-title { font-size:22px; font-weight:700; margin-bottom:12px; }
+    .as-section-title { font-size:18px; font-weight:500; margin:20px 0 16px; padding-bottom:0; border-bottom:none; }
+    .as-fields-row { display:flex; align-items:flex-end; gap:16px; flex-wrap:wrap; margin-bottom:16px; }
     .as-field { display:flex; flex-direction:column; gap:8px; min-width:0; }
     .as-fl { font-size:14px; font-weight:700; color:#474644; white-space:nowrap; }
-    .as-vc { display:inline-flex; align-items:center; padding:0 8px; background:#f2efeb; border:1px dashed #767471; border-radius:8px; font-size:14px; height:32px; white-space:nowrap; box-sizing:border-box; }
+    .as-vc { display:inline-flex; align-items:center; padding:0 8px; background:#f2efeb; border:1px dashed #767471; border-radius:8px; font-size:14px; height:32px; white-space:nowrap; box-sizing:border-box; overflow:hidden; text-overflow:ellipsis; }
     .as-vc-date { justify-content:space-between; }
     .as-vc-date::after { content:""; display:inline-block; width:13px; height:13px; flex-shrink:0; margin-left:6px; background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='13' height='13' viewBox='0 0 24 24' fill='none' stroke='%238a95a3' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='4' width='18' height='18' rx='2'/%3E%3Cline x1='16' y1='2' x2='16' y2='6'/%3E%3Cline x1='8' y1='2' x2='8' y2='6'/%3E%3Cline x1='3' y1='10' x2='21' y2='10'/%3E%3C/svg%3E") no-repeat center/contain; }
     .as-fi { font-size:14px; border:1px solid #1a1a19; border-radius:8px; padding:0 8px; color:var(--text-primary); background:#fff; height:32px; box-sizing:border-box; }
@@ -429,7 +430,7 @@
     .as-ar-tag-wrap { border:2px solid var(--arwrap-chip); color:#1a1a19; }
     .as-ar-inline { display:flex; align-items:center; gap:6px; padding-bottom:2px; }
     .as-ar-inline-lbl { font-size:12px; font-weight:700; color:var(--text-secondary); }
-    .as-divider { border:none; border-top:1px solid #ccc9c6; margin:30px 0; }
+    .as-divider { border:none; border-top:1px solid #ccc9c6; margin:20px 0; }
     .as-check-row { display:flex; align-items:center; gap:16px; margin-bottom:6px; flex-wrap:wrap; }
     .as-check-item { display:flex; align-items:center; gap:6px; font-size:14px; cursor:pointer; user-select:none; }
     .as-check-item input[type=checkbox] { cursor:pointer; width:14px; height:14px; }
@@ -438,8 +439,6 @@
     .as-fee-tab { display:flex; align-items:center; gap:8px; padding:10px 24px 10px 0; background:none; border:none; border-bottom:3px solid transparent; margin-bottom:-2px; cursor:pointer; font-size:14px; color:var(--text-secondary); white-space:nowrap; }
     .as-fee-tab + .as-fee-tab { padding-left:20px; }
     .as-fee-tab.active { color:var(--tab-active); border-bottom-color:var(--tab-active); font-weight:700; }
-    .as-fee-count { background:#e4e7ec; color:var(--text-secondary); font-size:12px; font-weight:600; border-radius:10px; padding:1px 7px; }
-    .as-fee-tab.active .as-fee-count { background:#d0e8ff; color:var(--blue-active-tab); }
     .as-fee-panel { display:none; padding-top:8px; }
     .as-fee-panel.active { display:block; }
     .as-table-meta { display:flex; align-items:center; gap:8px; padding:6px 0 8px; font-size:12px; color:var(--text-secondary); }
@@ -1224,8 +1223,8 @@
         checkCell +
         '<td>' + row.feeType + '</td>' +
         (is301 || isWrap
-          ? '<td class="codes-cell" onclick="openCodePicker(this,\'' + arCtx + '\',' + row.id + ',null)"><div class="chip-wrap">' + chips + '</div></td>'
-          : '<td><div class="chip-wrap">' + chips + '</div></td>') +
+          ? '<td class="codes-cell" onclick="openCodePicker(this,\'' + arCtx + '\',' + row.id + ',null)"><div class="codes-scroll"><div class="chip-wrap">' + chips + '</div></div></td>'
+          : '<td><div class="codes-scroll"><div class="chip-wrap">' + chips + '</div></div></td>') +
         statusCell +
         '<td>' + row.fafs + '</td>' +
         '<td>' + row.year + '</td>' +
@@ -2511,9 +2510,9 @@
                 if (is301)  return '<span class="chip">' + c + '<button class="chip-x" tabindex="-1" onclick="event.stopPropagation();removeSecCode(\'' + key + '\',\'301\',' + row.id + ',\'' + c + '\')">&#215;</button></span>';
                 return '<span class="chip chip-readonly">' + c + '</span>';
               }).join('');
-              chipsHtml = '<div class="chip-wrap">' + chipItems + '</div>';
+              chipsHtml = '<div class="codes-scroll"><div class="chip-wrap">' + chipItems + '</div></div>';
             } else {
-              chipsHtml = '<div class="chip-wrap"></div>';
+              chipsHtml = '<div class="codes-scroll"><div class="chip-wrap"></div></div>';
             }
             td.innerHTML = chipsHtml;
             if (isWrap || is301) {
@@ -3120,10 +3119,13 @@
     h += '<div class="page-header"><h2 class="page-title">AR Setup</h2></div>';
 
     // Billing Level chip + Sync FAF + last synced
-    h += '<div style="display:flex;align-items:center;gap:14px;margin-bottom:14px;flex-wrap:wrap;">' +
-         '<span class="as-bl-chip"><span class="as-bl-label">Billing Level</span>CARRIER</span>' +
-         '<button class="sync-faf-btn">&#8635; Sync FAF</button>' +
-         '<span class="sync-label" style="display:flex;flex-direction:column;line-height:1.5;"><span>Last synced</span><span>5/22/2026, 5:00:45 PM</span></span>' +
+    h += '<div style="display:flex;align-items:flex-end;gap:14px;margin-bottom:14px;flex-wrap:wrap;">' +
+         '<div class="as-field">' +
+           '<div class="as-fl">Billing Level</div>' +
+           '<span class="as-bl-chip">CARRIER</span>' +
+         '</div>' +
+         '<button class="sync-faf-btn" style="margin-bottom:0;">&#8635; Sync FAF</button>' +
+         '<span class="sync-label" style="display:flex;flex-direction:column;line-height:1.5;padding-bottom:2px;"><span>Last synced</span><span>5/22/2026, 5:00:45 PM</span></span>' +
          '</div>';
 
     // FRD title
@@ -3290,13 +3292,11 @@
 
     h += '<div class="as-fee-tabs-wrapper"><div class="as-fee-tabs">';
     tabs.forEach(function(t) {
-      var pfCnt = AR_PF_DATA[t.ar] ? AR_PF_DATA[t.ar].rows.length : 0;
       var active = (t.ar === _arActiveFeeTab);
       h += '<button id="as-ftab-' + t.ar + '" class="as-fee-tab' + (active ? ' active' : '') + '" ' +
            'onclick="switchArFeeTab(\'' + t.ar + '\')">' +
            t.label +
            ' <span class="as-ar-tag ' + t.tagCls + '">' + t.id + '</span>' +
-           ' <span class="as-fee-count">' + pfCnt + '</span>' +
            '</button>';
     });
     h += '</div></div>';
