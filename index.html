@@ -260,9 +260,9 @@
     .page-size-select { padding: 2px 4px; border: 1px solid var(--border); border-radius: 3px; font-size: 12.5px; cursor: pointer; }
     .pg-info { color: var(--text-secondary); }
     .pg-controls { display: flex; align-items: center; gap: 2px; }
-    .pg-btn { background: none; border: none; cursor: pointer; color: #6B7280; padding: 2px 5px; font-size: 12px; border-radius: 2px; }
-    .pg-btn:disabled { color: #D1D5DB; cursor: default; }
-    .pg-btn:not(:disabled):hover { background: #F3F4F6; }
+    .pg-btn { width:24px; height:24px; display:inline-flex; align-items:center; justify-content:center; background:none; border:none; cursor:pointer; color:var(--text-primary); font-size:14px; border-radius:4px; padding:0; }
+    .pg-btn:disabled { opacity:0.35; cursor:default; }
+    .pg-btn:not(:disabled):hover { background:#f2efeb; }
 
     /* Side tabs */
     .side-tabs { display: flex; flex-direction: column; background: var(--table-header-bg); border-left: 1px solid var(--table-border); flex-shrink: 0; width: 32px; }
@@ -442,8 +442,8 @@
     .as-fee-panel { display:none; padding-top:8px; }
     .as-fee-panel.active { display:block; }
     .as-table-meta { display:flex; align-items:center; gap:8px; padding:6px 0 8px; font-size:12px; color:var(--text-secondary); }
-    .as-ps-select { font-size:12px; border:1px solid var(--border); border-radius:3px; padding:2px 4px; }
-    .as-table-wrap { overflow-x:auto; border:1px solid var(--border); border-radius:4px; }
+    .as-ps-select { height:32px; font-size:14px; border:1px solid #1a1a19; border-radius:8px; padding:0 8px; background:#fff; cursor:pointer; }
+    .as-table-wrap { overflow-x:auto; border:1px solid var(--border); border-radius:4px 4px 0 0; }
     .as-fee-table { width:100%; border-collapse:collapse; font-size:12px; }
     .as-fee-table th { background:#f2efeb; padding:7px 10px; text-align:left; font-size:12px; font-weight:700; color:var(--text-secondary); border-bottom:1px solid var(--border); white-space:nowrap; }
     .as-fee-table td { padding:7px 10px; border-bottom:1px solid var(--border-light); vertical-align:middle; color:var(--text-primary); }
@@ -451,9 +451,10 @@
     .as-fee-table tbody tr:hover td { background:#f8f7f5; }
     .as-filter-row th { background:#f7f8fa; padding:3px 4px; border-bottom:1px solid var(--border); }
     .as-tbl-filter { width:100%; font-size:11px; border:1px solid var(--border); border-radius:3px; padding:2px 18px 2px 5px; color:var(--text-primary); background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%23aaa' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolygon points='22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3'/%3E%3C/svg%3E") no-repeat right 4px center / 9px; box-sizing:border-box; }
-    .as-pager-row { display:flex; align-items:center; flex-wrap:wrap; padding:8px 4px 4px; font-size:12px; color:var(--text-secondary); gap:10px; }
-    .as-pager-size { margin-right:auto; display:flex; align-items:center; gap:4px; }
-    .as-pager-btns { display:flex; align-items:center; gap:2px; }
+    .as-pager-row { display:flex; align-items:center; justify-content:flex-end; padding:4px 24px; font-size:14px; color:var(--text-primary); gap:8px 24px; border:1px solid var(--border); border-top:none; border-radius:0 0 4px 4px; background:#fff; }
+    .as-pager-size { margin-right:auto; display:flex; align-items:center; gap:8px; }
+    .as-pager-btns { display:flex; align-items:center; gap:4px; }
+    .as-empty-state { height:200px; text-align:center; vertical-align:middle; font-size:14px; color:var(--text-primary); }
 
     .setup-section { margin-bottom:10px; border:1px solid var(--border-light); border-radius:4px; }
     .setup-section-hdr { display:flex; justify-content:space-between; align-items:center; padding:9px 14px; cursor:pointer; background:#fafaf9; font-size:13px; font-weight:600; user-select:none; border-radius:4px; }
@@ -3344,7 +3345,7 @@
     out += '<tbody>';
 
     if (!pfRows.length) {
-      out += '<tr><td colspan="7" style="padding:14px;color:#8a95a3;font-style:italic;">No pricing fees have been added.</td></tr>';
+      out += '<tr><td colspan="7" class="as-empty-state">No Rows To Show</td></tr>';
     } else {
       pfRows.forEach(function(r) {
         out += '<tr>';
@@ -3364,11 +3365,11 @@
     var cnt = pfRows.length;
     out += '<div class="as-pager-row">';
     out += '<span class="as-pager-size">Page size: <select class="as-ps-select"><option value="10">10</option><option>25</option><option>50</option></select></span>';
-    out += '<span>1 to ' + cnt + ' of ' + cnt + '</span>';
+    out += '<span>' + (cnt > 0 ? '1 to ' + cnt + ' of ' + cnt : '0 to 0 of 0') + '</span>';
     out += '<div class="as-pager-btns">';
     out += '<button class="pg-btn" disabled>|&#60;</button>';
     out += '<button class="pg-btn" disabled>&#60;</button>';
-    out += '<span style="padding:0 8px;font-size:12.5px;">Page 1 of 1</span>';
+    out += '<span style="padding:0 8px;">Page 1 of 1</span>';
     out += '<button class="pg-btn" disabled>&#62;</button>';
     out += '<button class="pg-btn" disabled>&#62;|</button>';
     out += '</div>';
