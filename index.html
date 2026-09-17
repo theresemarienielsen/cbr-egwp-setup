@@ -451,9 +451,8 @@
     .as-fee-table tbody tr:hover td { background:#f8f7f5; }
     .as-filter-row th { background:#f7f8fa; padding:3px 4px; border-bottom:1px solid var(--border); }
     .as-tbl-filter { width:100%; font-size:11px; border:1px solid var(--border); border-radius:3px; padding:2px 18px 2px 5px; color:var(--text-primary); background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%23aaa' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolygon points='22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3'/%3E%3C/svg%3E") no-repeat right 4px center / 9px; box-sizing:border-box; }
-    .as-pager-row { display:flex; align-items:center; justify-content:flex-end; padding:4px 24px; font-size:14px; color:var(--text-primary); gap:8px 24px; border:1px solid var(--border); border-top:none; border-radius:0 0 4px 4px; background:#fff; }
-    .as-pager-size { margin-right:auto; display:flex; align-items:center; gap:8px; }
-    .as-pager-btns { display:flex; align-items:center; gap:4px; }
+    .as-pager-row { display:flex; align-items:center; justify-content:flex-end; padding:4px 12px; font-size:14px; color:var(--text-primary); gap:10px; border:1px solid var(--border); border-top:none; border-radius:0 0 4px 4px; background:#fff; }
+    .as-pager-btns { display:flex; align-items:center; gap:2px; }
     .as-empty-state { height:200px; text-align:center; vertical-align:middle; font-size:14px; color:var(--text-primary); }
 
     .setup-section { margin-bottom:10px; border:1px solid var(--border-light); border-radius:4px; }
@@ -3364,12 +3363,13 @@
 
     var cnt = pfRows.length;
     out += '<div class="as-pager-row">';
-    out += '<span class="as-pager-size">Page size: <select class="as-ps-select"><option value="10">10</option><option>25</option><option>50</option></select></span>';
-    out += '<span>' + (cnt > 0 ? '1 to ' + cnt + ' of ' + cnt : '0 to 0 of 0') + '</span>';
+    out += '<span>Page size:</span>';
+    out += '<select class="as-ps-select"><option value="10">10</option><option>25</option><option>50</option></select>';
+    out += '<span>' + (cnt > 0 ? '1 to ' + cnt + ' of ' + cnt : '0 to 0 of 0') + '</span>';
     out += '<div class="as-pager-btns">';
     out += '<button class="pg-btn" disabled>|&#60;</button>';
     out += '<button class="pg-btn" disabled>&#60;</button>';
-    out += '<span style="padding:0 8px;">Page 1 of 1</span>';
+    out += '<span style="padding:0 4px;">Page 1 of 1</span>';
     out += '<button class="pg-btn" disabled>&#62;</button>';
     out += '<button class="pg-btn" disabled>&#62;|</button>';
     out += '</div>';
