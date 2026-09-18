@@ -442,18 +442,17 @@
     .as-fee-panel { display:none; padding-top:8px; }
     .as-fee-panel.active { display:block; }
     .as-table-meta { display:flex; align-items:center; gap:8px; padding:6px 0 8px; font-size:12px; color:var(--text-secondary); }
-    .as-ps-select { height:32px; font-size:14px; border:1px solid #1a1a19; border-radius:8px; padding:0 8px; background:#fff; cursor:pointer; }
-    .as-table-wrap { overflow-x:auto; border:1px solid var(--border); border-radius:4px 4px 0 0; }
-    .as-fee-table { width:100%; border-collapse:collapse; font-size:12px; }
-    .as-fee-table th { background:#f2efeb; padding:7px 10px; text-align:left; font-size:12px; font-weight:700; color:var(--text-secondary); border-bottom:1px solid var(--border); white-space:nowrap; }
-    .as-fee-table td { padding:7px 10px; border-bottom:1px solid var(--border-light); vertical-align:middle; color:var(--text-primary); }
-    .as-fee-table tbody tr:last-child td { border-bottom:none; }
-    .as-fee-table tbody tr:hover td { background:#f8f7f5; }
-    .as-filter-row th { background:#f7f8fa; padding:3px 4px; border-bottom:1px solid var(--border); }
-    .as-tbl-filter { width:100%; font-size:11px; border:1px solid var(--border); border-radius:3px; padding:2px 18px 2px 5px; color:var(--text-primary); background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%23aaa' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolygon points='22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3'/%3E%3C/svg%3E") no-repeat right 4px center / 9px; box-sizing:border-box; }
-    .as-pager-row { display:flex; align-items:center; justify-content:flex-end; padding:4px 12px; font-size:14px; color:var(--text-primary); gap:10px; border:1px solid var(--border); border-top:none; border-radius:0 0 4px 4px; background:#fff; }
+    .as-ps-select { padding:2px 4px; border:1px solid var(--border); border-radius:3px; font-size:12.5px; cursor:pointer; }
+    .as-table-wrap { overflow-x:auto; border:1px solid var(--table-border); border-radius:4px; }
+    .as-fee-table { width:100%; border-collapse:collapse; font-size:13px; }
+    .as-fee-table thead tr:first-child th { background:var(--table-header-bg); padding:0 8px; height:40px; text-align:left; font-weight:700; font-size:14px; color:var(--table-header-text); border-bottom:1px solid var(--table-border); white-space:nowrap; }
+    .as-fee-table td { padding:0 8px; height:32px; border-top:1px solid var(--table-border); border-bottom:none; vertical-align:middle; font-size:14px; color:var(--table-text); }
+    .as-fee-table tbody tr:first-child td { border-top:none; }
+    .as-fee-table tbody tr:hover td { background:var(--table-hover-bg); }
+    .as-filter-row td { padding:8px 6px; height:48px; background:var(--table-header-bg); border-bottom:1px solid var(--table-border); vertical-align:middle; }
+    .as-pager-row { display:flex; align-items:center; justify-content:flex-end; padding:10px 10px 6px; font-size:12.5px; color:var(--text-secondary); gap:10px; }
     .as-pager-btns { display:flex; align-items:center; gap:2px; }
-    .as-empty-state { height:200px; text-align:center; vertical-align:middle; font-size:14px; color:var(--text-primary); }
+    .as-empty-state { height:200px; text-align:center; vertical-align:middle; font-size:14px; color:var(--table-text); }
 
     .setup-section { margin-bottom:10px; border:1px solid var(--border-light); border-radius:4px; }
     .setup-section-hdr { display:flex; justify-content:space-between; align-items:center; padding:9px 14px; cursor:pointer; background:#fafaf9; font-size:13px; font-weight:600; user-select:none; border-radius:4px; }
@@ -596,20 +595,20 @@
               </tr>
               <tr class="filter-row">
                 <td class="col-check"></td>
-                <td><div class="filter-cell"><input type="text" placeholder="Filter" tabindex="-1"><span class="filter-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1.5 1.5h11L8 8v4L6 11V8L1.5 1.5z" fill="#1a1a19"/></svg></span></div></td>
-                <td><div class="filter-cell"><input type="text" placeholder="Filter" tabindex="-1"><span class="filter-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1.5 1.5h11L8 8v4L6 11V8L1.5 1.5z" fill="#1a1a19"/></svg></span></div></td>
-                <td><div class="filter-cell"><span class="filter-label">Filter</span><span class="filter-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1.5 1.5h11L8 8v4L6 11V8L1.5 1.5z" fill="#1a1a19"/></svg></span></div></td>
-                <td><div class="filter-cell"><span class="filter-label">Filter</span><span class="filter-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1.5 1.5h11L8 8v4L6 11V8L1.5 1.5z" fill="#1a1a19"/></svg></span></div></td>
-                <td><div class="filter-cell"><span class="filter-label">Filter</span><span class="filter-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1.5 1.5h11L8 8v4L6 11V8L1.5 1.5z" fill="#1a1a19"/></svg></span></div></td>
-                <td><div class="filter-cell"><span class="filter-label">Filter</span><span class="filter-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1.5 1.5h11L8 8v4L6 11V8L1.5 1.5z" fill="#1a1a19"/></svg></span></div></td>
-                <td><div class="filter-cell"><span class="filter-label">Filter</span><span class="filter-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1.5 1.5h11L8 8v4L6 11V8L1.5 1.5z" fill="#1a1a19"/></svg></span></div></td>
-                <td><div class="filter-cell"><span class="filter-label">Filter</span><span class="filter-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1.5 1.5h11L8 8v4L6 11V8L1.5 1.5z" fill="#1a1a19"/></svg></span></div></td>
-                <td><div class="filter-cell"><span class="filter-label">Filter</span><span class="filter-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1.5 1.5h11L8 8v4L6 11V8L1.5 1.5z" fill="#1a1a19"/></svg></span></div></td>
-                <td><div class="filter-cell"><span class="filter-label">Filter</span><span class="filter-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1.5 1.5h11L8 8v4L6 11V8L1.5 1.5z" fill="#1a1a19"/></svg></span></div></td>
-                <td><div class="filter-cell"><span class="filter-label">Filter</span><span class="filter-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1.5 1.5h11L8 8v4L6 11V8L1.5 1.5z" fill="#1a1a19"/></svg></span></div></td>
-                <td><div class="filter-cell"><span class="filter-label">Filter</span><span class="filter-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1.5 1.5h11L8 8v4L6 11V8L1.5 1.5z" fill="#1a1a19"/></svg></span></div></td>
-                <td><div class="filter-cell"><span class="filter-label">Filter</span><span class="filter-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1.5 1.5h11L8 8v4L6 11V8L1.5 1.5z" fill="#1a1a19"/></svg></span></div></td>
-                <td><div class="filter-cell"><span class="filter-label">Filter</span><span class="filter-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1.5 1.5h11L8 8v4L6 11V8L1.5 1.5z" fill="#1a1a19"/></svg></span></div></td>
+                <td><div class="filter-cell"><input type="text" tabindex="-1"><span class="filter-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1.5 1.5h11L8 8v4L6 11V8L1.5 1.5z" fill="#1a1a19"/></svg></span></div></td>
+                <td><div class="filter-cell"><input type="text" tabindex="-1"><span class="filter-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1.5 1.5h11L8 8v4L6 11V8L1.5 1.5z" fill="#1a1a19"/></svg></span></div></td>
+                <td><div class="filter-cell"><span class="filter-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1.5 1.5h11L8 8v4L6 11V8L1.5 1.5z" fill="#1a1a19"/></svg></span></div></td>
+                <td><div class="filter-cell"><span class="filter-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1.5 1.5h11L8 8v4L6 11V8L1.5 1.5z" fill="#1a1a19"/></svg></span></div></td>
+                <td><div class="filter-cell"><span class="filter-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1.5 1.5h11L8 8v4L6 11V8L1.5 1.5z" fill="#1a1a19"/></svg></span></div></td>
+                <td><div class="filter-cell"><span class="filter-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1.5 1.5h11L8 8v4L6 11V8L1.5 1.5z" fill="#1a1a19"/></svg></span></div></td>
+                <td><div class="filter-cell"><span class="filter-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1.5 1.5h11L8 8v4L6 11V8L1.5 1.5z" fill="#1a1a19"/></svg></span></div></td>
+                <td><div class="filter-cell"><span class="filter-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1.5 1.5h11L8 8v4L6 11V8L1.5 1.5z" fill="#1a1a19"/></svg></span></div></td>
+                <td><div class="filter-cell"><span class="filter-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1.5 1.5h11L8 8v4L6 11V8L1.5 1.5z" fill="#1a1a19"/></svg></span></div></td>
+                <td><div class="filter-cell"><span class="filter-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1.5 1.5h11L8 8v4L6 11V8L1.5 1.5z" fill="#1a1a19"/></svg></span></div></td>
+                <td><div class="filter-cell"><span class="filter-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1.5 1.5h11L8 8v4L6 11V8L1.5 1.5z" fill="#1a1a19"/></svg></span></div></td>
+                <td><div class="filter-cell"><span class="filter-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1.5 1.5h11L8 8v4L6 11V8L1.5 1.5z" fill="#1a1a19"/></svg></span></div></td>
+                <td><div class="filter-cell"><span class="filter-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1.5 1.5h11L8 8v4L6 11V8L1.5 1.5z" fill="#1a1a19"/></svg></span></div></td>
+                <td><div class="filter-cell"><span class="filter-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1.5 1.5h11L8 8v4L6 11V8L1.5 1.5z" fill="#1a1a19"/></svg></span></div></td>
               </tr>
             </thead>
             <tbody id="tableBody"></tbody>
@@ -2413,9 +2412,9 @@
       } else {
         applyFrozen(td, col, offsets[i]);
         if (col.type === CT_TEXT || col.type === CT_CHIPS || col.type === CT_DATE) {
-          td.innerHTML = '<div class="filter-cell"><input type="text" placeholder="Filter" tabindex="-1">' + FSVG + '</div>';
+          td.innerHTML = '<div class="filter-cell"><input type="text" tabindex="-1">' + FSVG + '</div>';
         } else {
-          td.innerHTML = '<div class="filter-cell"><span class="filter-label">Filter</span>' + FSVG + '</div>';
+          td.innerHTML = '<div class="filter-cell">' + FSVG + '</div>';
         }
       }
       trF.appendChild(td);
@@ -3331,14 +3330,15 @@
     out += '<th>Valid To <span style="opacity:.4;font-size:10px;">&#8597;</span></th>';
     out += '<th style="width:24px;"></th>';
     out += '</tr>';
+    var asFSVG = '<span class="filter-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1.5 1.5h11L8 8v4L6 11V8L1.5 1.5z" fill="#1a1a19"/></svg></span>';
     out += '<tr class="as-filter-row">';
-    out += '<th><input class="as-tbl-filter" type="text"></th>';
-    out += '<th><input class="as-tbl-filter" type="text"></th>';
-    out += '<th><input class="as-tbl-filter" type="text"></th>';
-    out += '<th><input class="as-tbl-filter" type="text"></th>';
-    out += '<th><input class="as-tbl-filter" type="text"></th>';
-    out += '<th><input class="as-tbl-filter" type="text"></th>';
-    out += '<th></th>';
+    out += '<td><div class="filter-cell"><input type="text" tabindex="-1">' + asFSVG + '</div></td>';
+    out += '<td><div class="filter-cell"><input type="text" tabindex="-1">' + asFSVG + '</div></td>';
+    out += '<td><div class="filter-cell"><input type="text" tabindex="-1">' + asFSVG + '</div></td>';
+    out += '<td><div class="filter-cell"><input type="text" tabindex="-1">' + asFSVG + '</div></td>';
+    out += '<td><div class="filter-cell"><input type="text" tabindex="-1">' + asFSVG + '</div></td>';
+    out += '<td><div class="filter-cell"><input type="text" tabindex="-1">' + asFSVG + '</div></td>';
+    out += '<td></td>';
     out += '</tr>';
     out += '</thead>';
     out += '<tbody>';
