@@ -3162,7 +3162,7 @@
     // Billing Level chip + Sync FAF + last synced
     h += '<div style="display:flex;align-items:flex-end;gap:14px;margin-bottom:14px;flex-wrap:wrap;">' +
          '<div class="as-field">' +
-           '<div class="as-fl">Billing Level</div>' +
+           '<div class="as-fl">Billing FAF</div>' +
            '<span class="as-bl-chip">CARRIER</span>' +
          '</div>' +
          '<button class="sync-faf-btn" style="margin-bottom:0;">&#8635; Sync FAF</button>' +
@@ -3177,9 +3177,9 @@
 
     // 301 — row 1: Carrier #, 301 AR#, Account Name, ARIGN
     h += '<div class="as-fields-row">' +
-         _asF('Carrier #',    '<input class="as-fi" style="width:88px" type="text" value="91AF">') +
-         _asF('301 AR#',      '<span class="as-vc" style="width:88px">A91AF</span>') +
-         _asF('Account Name', '<input class="as-fi wide" style="width:320px" type="text" value="BRISTOL-MYERS SQUIBB COMPANY">') +
+         _asF('Carrier #',    '<input class="as-fi" style="width:145px" type="text" value="91AF">') +
+         _asF('301 AR#',      '<span class="as-vc" style="width:145px">A91AF</span>') +
+         _asF('Account Name', '<input class="as-fi wide" style="width:440px" type="text" value="BRISTOL-MYERS SQUIBB COMPANY">') +
          '<div class="as-ar-inline" style="padding-bottom:4px;">' +
            '<input type="checkbox" id="as-arign">' +
            '<label for="as-arign" style="font-size:14px;cursor:pointer;">ARIGN</label>' +
@@ -3188,69 +3188,67 @@
 
     // 301 — row 2: Billing Level, Detail Level
     h += '<div class="as-fields-row">' +
-         _asF('Billing Level', '<span class="as-vc" style="width:90px">CARRIER</span>') +
-         _asF('Detail Level',  '<span class="as-vc" style="width:90px">RPT-GRP</span>') +
+         _asF('Billing Level', '<span class="as-vc" style="width:145px">CARRIER</span>') +
+         _asF('Detail Level',  '<span class="as-vc" style="width:145px">RPT-GRP</span>') +
          '</div>';
 
-    // 301 — row 3: AEF, Diff Type, Invoice Type, PMPM
+    // 301 — row 3: AEF, Invoice Type, PMPM (Differential Type removed)
     h += '<div class="as-fields-row">' +
-         _asF('AEF List Name',      '<span class="as-vc" style="width:110px">FUND4XMTH</span>') +
-         _asF('Differential Type',  '<span class="as-vc" style="width:90px">&nbsp;</span>') +
-         _asF('Invoice Type',       '<span class="as-vc" style="width:90px">EXCL_CR</span>') +
-         _asF('PMPM Indicator',     '<select class="as-fi" style="width:110px"><option>SHOW</option><option>HIDE</option><option>NONE</option></select>') +
+         _asF('AEF List Name',  '<span class="as-vc" style="width:145px">FUND4XMTH</span>') +
+         _asF('Invoice Type',   '<span class="as-vc" style="width:145px">EXCL_CR</span>') +
+         _asF('PMPM Indicator', '<select class="as-fi" style="width:145px"><option>P</option><option>B</option><option>E</option></select>') +
          '</div>';
 
-    // 301 — invoice at month end checkbox
-    h += '<div class="as-check-row"><label class="as-check-item"><input type="checkbox"> Invoice at Month End</label></div>';
-
-    // 301 — daily indicator + eff date
+    // 301 — daily indicator + eff date (Invoice at Month End removed)
     h += '<div class="as-fields-row" style="align-items:flex-end;margin-top:4px;">' +
          '<label class="as-check-item"><input type="checkbox" checked> Daily Indicator</label>' +
-         _asF('Daily Eff Date', '<span class="as-vc as-vc-date" style="width:120px;">01/01/2027</span>') +
+         _asF('Daily Eff Date', '<input class="as-fi" style="width:145px" type="date" value="2027-01-01">') +
          '</div>';
 
     h += '<hr class="as-divider">';
 
-    // 231 — just AR# and Account Name
+    // 231 — AR# (enabled input) and Account Name
     h += '<div class="as-fields-row">' +
-         _asF('231 AR#',      '<span class="as-vc" style="width:88px">10610</span>') +
-         _asF('Account Name', '<span class="as-vc" style="width:320px">BRISTOL-MYERS SQUIBB COMPANY- EGWP</span>') +
+         _asF('231 AR#',      '<input class="as-fi" style="width:145px" type="text" value="10610">') +
+         _asF('Account Name', '<span class="as-vc" style="width:440px">BRISTOL-MYERS SQUIBB COMPANY- EGWP</span>') +
          '</div>';
 
     h += '<hr class="as-divider">';
 
     // WRAP — row 1: WRAP Carrier #, WRAP AR#, Account Name
     h += '<div class="as-fields-row">' +
-         _asF('WRAP Carrier #', '<input class="as-fi" style="width:88px" type="text" value="92AC">') +
-         _asF('WRAP AR#',       '<span class="as-vc" style="width:88px">A92AC</span>') +
-         _asF('Account Name',   '<span class="as-vc" style="width:320px">BRISTOL-MYERS SQUIBB COMPANY- ENHANCED</span>') +
+         _asF('WRAP Carrier #', '<input class="as-fi" style="width:145px" type="text" value="92AC">') +
+         _asF('WRAP AR#',       '<span class="as-vc" style="width:145px">A92AC</span>') +
+         _asF('Account Name',   '<span class="as-vc" style="width:440px">BRISTOL-MYERS SQUIBB COMPANY- ENHANCED</span>') +
          '</div>';
 
     // WRAP — row 2: Billing Level, Detail Level
     h += '<div class="as-fields-row">' +
-         _asF('Billing Level', '<span class="as-vc" style="width:90px">GROUP</span>') +
-         _asF('Detail Level',  '<span class="as-vc" style="width:90px">RPT-GRP</span>') +
+         _asF('Billing Level', '<span class="as-vc" style="width:145px">GROUP</span>') +
+         _asF('Detail Level',  '<span class="as-vc" style="width:145px">RPT-GRP</span>') +
          '</div>';
 
-    // WRAP — row 3: AEF, Diff, Invoice, PMPM
+    // WRAP — row 3: AEF, Invoice Type, PMPM (Differential Type removed)
     h += '<div class="as-fields-row">' +
-         _asF('AEF List Name',     '<span class="as-vc" style="width:110px">FUND4XMTH</span>') +
-         _asF('Differential Type', '<span class="as-vc" style="width:90px">SPLIT</span>') +
-         _asF('Invoice Type',      '<span class="as-vc" style="width:90px">EXCL_CR</span>') +
-         _asF('PMPM Indicator',    '<select class="as-fi" style="width:110px"><option>NONE</option><option>SHOW</option><option>HIDE</option></select>') +
+         _asF('AEF List Name',  '<span class="as-vc" style="width:145px">FUND4XMTH</span>') +
+         _asF('Invoice Type',   '<span class="as-vc" style="width:145px">EXCL_CR</span>') +
+         _asF('PMPM Indicator', '<select class="as-fi" style="width:145px"><option>P</option><option>B</option><option>E</option></select>') +
          '</div>';
 
-    // WRAP — invoice at month end
-    h += '<div class="as-check-row"><label class="as-check-item"><input type="checkbox"> Invoice at Month End</label></div>';
-
-    // WRAP — daily indicator + eff date
+    // WRAP — daily indicator + eff date (Invoice at Month End removed)
     h += '<div class="as-fields-row" style="align-items:flex-end;margin-top:4px;">' +
          '<label class="as-check-item"><input type="checkbox" checked> Daily Indicator</label>' +
-         _asF('Daily Eff Date', '<span class="as-vc as-vc-date" style="width:120px;">01/01/2027</span>') +
+         _asF('Daily Eff Date', '<input class="as-fi" style="width:145px" type="date" value="2027-01-01">') +
          '</div>';
 
     // ── PAYMENT STRUCTURE ───────────────────────────────────────────────────
     h += '<div class="as-section-title">Payment Structure</div>';
+
+    // Billing Request + Flag258 — directly below heading, checked and disabled
+    h += '<div class="as-check-row">' +
+         '<label class="as-check-item"><input type="checkbox" checked disabled> Billing Request</label>' +
+         '<label class="as-check-item"><input type="checkbox" checked disabled> Flag258</label>' +
+         '</div>';
 
     // 301 Payment — row 1
     h += '<div class="as-fields-row" style="align-items:flex-end;">' +
@@ -3258,24 +3256,19 @@
            '<div class="as-fl">301 AR#</div>' +
            '<span class="as-ar-field as-ar-tag-301">A91AF</span>' +
          '</div>' +
-         _asF('Claim payment by',    '<select class="as-fi" style="width:130px"><option>ACH Credit</option><option>ACH Debit</option><option>Check</option><option>Wire</option></select>') +
-         _asF('Admin payment by',    '<select class="as-fi" style="width:130px"><option>ACH Debit</option><option>ACH Credit</option><option>Check</option><option>Wire</option></select>') +
-         _asF('Invoicing Dates',     '<span class="as-vc" style="width:70px">99</span>') +
-         _asF('Invoicing List Dates','<span class="as-vc" style="width:90px">99</span>') +
+         _asF('Claim payment by',    '<select class="as-fi" style="width:145px" disabled><option>ACH Credit</option><option>ACH Debit</option><option>Check</option><option>Wire</option></select>') +
+         _asF('Admin payment by',    '<select class="as-fi" style="width:145px" disabled><option>ACH Debit</option><option>ACH Credit</option><option>Check</option><option>Wire</option></select>') +
+         _asF('Invoicing Dates',     '<span class="as-vc" style="width:145px">99</span>') +
+         _asF('Invoicing List Dates','<span class="as-vc" style="width:145px">99</span>') +
          '</div>';
 
     // 301 Payment — row 2
     h += '<div class="as-fields-row">' +
-         _asF('Incoming Claim Pmts', '<span class="as-vc" style="width:90px">2</span>') +
-         _asF('Incoming Fee Pmts',   '<span class="as-vc" style="width:90px">7</span>') +
-         _asF('Terms of Pmt',        '<span class="as-vc" style="width:90px">XAH2</span>') +
-         _asF('B/E Charges',         '<span class="as-vc" style="width:90px">XAH2</span>') +
-         '</div>';
-
-    // 301 Payment — checkboxes
-    h += '<div class="as-check-row">' +
-         '<label class="as-check-item"><input type="checkbox" checked> Billing Request</label>' +
-         '<label class="as-check-item"><input type="checkbox" checked> Flag258</label>' +
+         _asF('Incoming Claim Pmts', '<span class="as-vc" style="width:145px">2</span>') +
+         _asF('Incoming Fee Pmts',   '<span class="as-vc" style="width:145px">7</span>') +
+         _asF('Terms of Pmt',        '<span class="as-vc" style="width:145px">XAH2</span>') +
+         _asF('B/E Charges',         '<span class="as-vc" style="width:145px">XAH2</span>') +
+         _asF('Outgoing Payments',   '<input class="as-fi" style="width:145px" type="text" value="C" disabled>') +
          '</div>';
 
     h += '<hr class="as-divider">';
@@ -3286,15 +3279,15 @@
            '<div class="as-fl">231 AR#</div>' +
            '<span class="as-ar-field as-ar-tag-231">10610</span>' +
          '</div>' +
-         _asF('Previous Acct #',     '<span class="as-vc" style="width:90px">A91AF</span>') +
-         _asF('Invoicing Dates',     '<input class="as-fi" style="width:70px" type="text" value="99">') +
-         _asF('Invoicing List Dates','<input class="as-fi" style="width:90px" type="text" value="99">') +
+         _asF('Previous Acct #',     '<span class="as-vc" style="width:145px">A91AF</span>') +
+         _asF('Invoicing Dates',     '<input class="as-fi" style="width:145px" type="text" value="99">') +
+         _asF('Invoicing List Dates','<input class="as-fi" style="width:145px" type="text" value="99">') +
          '</div>';
 
     // 231 Payment — row 2
     h += '<div class="as-fields-row">' +
-         _asF('Terms of Pmt', '<select class="as-fi" style="width:110px"><option>SA15</option><option>SA30</option><option>SA45</option><option>SA60</option><option>SA90</option></select>') +
-         _asF('B/E Charges',  '<select class="as-fi" style="width:110px"><option>SA15</option><option>SA10</option><option>XE05</option><option>XE10</option></select>') +
+         _asF('Terms of Pmt', '<select class="as-fi" style="width:145px"><option>SA15</option><option>SA30</option><option>SA45</option><option>SA60</option><option>SA90</option></select>') +
+         _asF('B/E Charges',  '<select class="as-fi" style="width:145px"><option>SA15</option><option>SA10</option><option>XE05</option><option>XE10</option></select>') +
          '</div>';
 
     h += '<hr class="as-divider">';
@@ -3305,22 +3298,19 @@
            '<div class="as-fl">WRAP AR#</div>' +
            '<span class="as-ar-field as-ar-tag-wrap">A92AC</span>' +
          '</div>' +
-         _asF('Claim payment by',    '<select class="as-fi" style="width:130px"><option>ACH Credit</option><option>ACH Debit</option><option>Check</option><option>Wire</option></select>') +
-         _asF('Admin payment by',    '<select class="as-fi" style="width:130px"><option>ACH Debit</option><option>ACH Credit</option><option>Check</option><option>Wire</option></select>') +
-         _asF('Invoicing Dates',     '<input class="as-fi" style="width:70px" type="text" value="99">') +
-         _asF('Invoicing List Dates','<input class="as-fi" style="width:90px" type="text" value="99">') +
+         _asF('Claim payment by',    '<select class="as-fi" style="width:145px" disabled><option>ACH Credit</option><option>ACH Debit</option><option>Check</option><option>Wire</option></select>') +
+         _asF('Admin payment by',    '<select class="as-fi" style="width:145px" disabled><option>ACH Debit</option><option>ACH Credit</option><option>Check</option><option>Wire</option></select>') +
+         _asF('Invoicing Dates',     '<input class="as-fi" style="width:145px" type="text" value="99">') +
+         _asF('Invoicing List Dates','<input class="as-fi" style="width:145px" type="text" value="99">') +
          '</div>';
 
     // WRAP Payment — row 2
     h += '<div class="as-fields-row">' +
-         _asF('Incoming Claim Pmts', '<span class="as-vc" style="width:90px">2</span>') +
-         _asF('Incoming Fee Pmts',   '<span class="as-vc" style="width:90px">7</span>') +
-         _asF('Terms of Pmt', '<select class="as-fi" style="width:110px"><option>XA10</option><option>XAH2</option><option>XE05</option><option>XE10</option><option>XE15</option><option>XE30</option></select>') +
-         _asF('B/E Charges',  '<select class="as-fi" style="width:110px"><option>XA10</option><option>XE05</option><option>XE10</option></select>') +
+         _asF('Incoming Claim Pmts', '<span class="as-vc" style="width:145px">2</span>') +
+         _asF('Incoming Fee Pmts',   '<span class="as-vc" style="width:145px">7</span>') +
+         _asF('Terms of Pmt', '<select class="as-fi" style="width:145px"><option>XA10</option><option>XAH2</option><option>XE05</option><option>XE10</option><option>XE15</option><option>XE30</option></select>') +
+         _asF('B/E Charges',  '<select class="as-fi" style="width:145px"><option>XA10</option><option>XE05</option><option>XE10</option></select>') +
          '</div>';
-
-    // WRAP — split admin fee
-    h += '<div class="as-check-row"><label class="as-check-item"><input type="checkbox"> Split Admin Fee</label></div>';
 
     // ── PRICING FEES ─────────────────────────────────────────────────────────
     h += '<div class="as-section-title">Pricing Fees</div>';
