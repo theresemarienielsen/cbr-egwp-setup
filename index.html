@@ -174,6 +174,21 @@
     .fee-table tbody tr.row-disabled td.col-check { opacity: 1; }
     .fee-table tbody tr.row-disabled td.col-check input { opacity: 0.35; cursor: not-allowed; }
 
+    /* Zero-code rows: disable pointer events but preserve full color */
+    .fee-table tbody tr.row-no-codes td { pointer-events: none; }
+    .fee-table tbody tr.row-no-codes td.col-check input[type="checkbox"]:disabled {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 13px; height: 13px;
+      background: #F2EFEB;
+      border: 1.5px solid #767471;
+      border-radius: 2px;
+      cursor: not-allowed;
+      display: inline-block;
+      vertical-align: middle;
+      flex-shrink: 0;
+    }
+
     /* ── FROZEN COLUMNS — Billing Administrative (#mainTable) only ─────────── */
     /* Scoped to #mainTable so secondary tables are not affected. */
     #mainTable thead tr:first-child th:nth-child(1),
@@ -1187,7 +1202,8 @@
 
       const tr = document.createElement('tr');
       if (isSelected) tr.classList.add('row-selected');
-      if (isPerClaimsDisabled || hasNoCodes) tr.classList.add('row-disabled');
+      if (isPerClaimsDisabled) tr.classList.add('row-disabled');
+      if (hasNoCodes) tr.classList.add('row-no-codes');
 
       // Checkbox cell
       let checkCell = '';
@@ -1211,7 +1227,9 @@
           : '<span class="chip">' + c + '<button class="chip-x" tabindex="-1" onclick="event.stopPropagation();removeCode(\'' + arCtx + '\',' + row.id + ',\'' + c + '\')">&#215;</button></span>'
       ).join('');
       const isSent = row.sent === true;
-      const statusCell = '<td><div class="status-cell">' + (isSent ? CHECK_IMG : CLOCK_SVG) + '</div></td>';
+      const statusCell = hasNoCodes
+        ? '<td></td>'
+        : '<td><div class="status-cell">' + (isSent ? CHECK_IMG : CLOCK_SVG) + '</div></td>';
 
       // Dates: editable in 301 and WRAP; read-only in 231
       const dateEditable = is301 || isWrap;
@@ -2488,7 +2506,7 @@
 
       var tr = document.createElement('tr');
       if (isSel) tr.classList.add('row-selected');
-      if (rowHasNoCodes) tr.classList.add('row-disabled');
+      if (rowHasNoCodes) tr.classList.add('row-no-codes');
       // 231 rows remain non-interactive (pointer-events: none)
       if (is231) tr.style.pointerEvents = 'none';
 
@@ -2523,7 +2541,7 @@
           applyFrozen(td, col, offsets[i]);
 
           if (col.type === CT_STATUS) {
-            td.innerHTML = '<div class="status-cell">' + (isSent ? CHECK_IMG : CLOCK_SVG) + '</div>';
+            td.innerHTML = rowHasNoCodes ? '' : '<div class="status-cell">' + (isSent ? CHECK_IMG : CLOCK_SVG) + '</div>';
 
           } else if (col.type === CT_CHIPS) {
             var val = row[col.key];
