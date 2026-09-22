@@ -1173,6 +1173,10 @@
     const rows = getActiveRows();
 
     rows.forEach(row => {
+      // Rows with no material codes are non-selectable (301 and WRAP only)
+      const hasNoCodes = (is301 || isWrap) && (!row.codes || row.codes.length === 0);
+      // Auto-deselect empty-code rows so state stays clean
+      if (hasNoCodes) { sel().delete(row.id); selectedByAR['wrap'].delete(row.id); }
       // Mirror state: 231 only — mirrors 301 selection
       const mirroredBy301 = is231 && row.linkedTo301 !== null && selectedByAR['301'].has(row.linkedTo301);
       // WRAP rows are independently selectable via selectedByAR['wrap']
@@ -1183,7 +1187,7 @@
 
       const tr = document.createElement('tr');
       if (isSelected) tr.classList.add('row-selected');
-      if (isPerClaimsDisabled) tr.classList.add('row-disabled');
+      if (isPerClaimsDisabled || hasNoCodes) tr.classList.add('row-disabled');
 
       // Checkbox cell
       let checkCell = '';
@@ -1192,10 +1196,10 @@
         checkCell = '<td class="col-check"><input type="checkbox"' +
           (isSelected ? ' checked' : '') + ' disabled></td>';
       } else {
-        // 301 and WRAP: freely selectable; sent/unsent is enforced at modal + send level
+        // 301 and WRAP: disabled when row has no codes
         checkCell = '<td class="col-check"><input type="checkbox"' +
           (isSelected ? ' checked' : '') +
-          (isPerClaimsDisabled ? ' disabled' : '') +
+          (isPerClaimsDisabled || hasNoCodes ? ' disabled' : '') +
           ' onchange="onRowCheck(' + row.id + ', this)"></td>';
       }
 
@@ -1270,12 +1274,13 @@
   function syncSelectAllCheckbox() {
     const cb = document.getElementById('chkSelectAll');
     const rows = getActiveRows();
-    const eligible = perClaimsMode ? rows.filter(r => r.perClaimsEligible) : rows;
+    const withCodes = rows.filter(r => r.codes && r.codes.length > 0);
+    const eligible = perClaimsMode ? withCodes.filter(r => r.perClaimsEligible) : withCodes;
     const allChecked = eligible.length > 0 && eligible.every(r => sel().has(r.id));
     const someChecked = eligible.some(r => sel().has(r.id));
     cb.checked = allChecked;
     cb.indeterminate = !allChecked && someChecked;
-    cb.disabled = false;
+    cb.disabled = eligible.length === 0;
     const thCheck = document.querySelector('#mainTable th.col-check');
     if (thCheck) thCheck.classList.toggle('header-all-selected', allChecked);
   }
@@ -1284,14 +1289,14 @@
     const cb = document.getElementById('chkSelectAll');
     const rows = getActiveRows();
     const thCheck = document.querySelector('#mainTable th.col-check');
-    if (rows.length === 0) {
+    const eligible = rows.filter(r => r.codes && r.codes.length > 0);
+    if (eligible.length === 0) {
       cb.checked = false; cb.indeterminate = false; cb.disabled = true;
       if (thCheck) thCheck.classList.remove('header-all-selected');
       return;
     }
-    // All WRAP rows are independently selectable via selectedByAR['wrap']
-    const selectedCount = rows.filter(r => selectedByAR['wrap'].has(r.id)).length;
-    const allChecked  = selectedCount === rows.length;
+    const selectedCount = eligible.filter(r => selectedByAR['wrap'].has(r.id)).length;
+    const allChecked  = selectedCount === eligible.length;
     const someChecked = selectedCount > 0;
     cb.checked       = allChecked;
     cb.indeterminate = !allChecked && someChecked;
@@ -1333,12 +1338,14 @@
   function onSelectAll(cb) {
     if (activeAR === '301') {
       const rows = getActiveRows();
-      const eligible = perClaimsMode ? rows.filter(r => r.perClaimsEligible) : rows;
+      const withCodes = rows.filter(r => r.codes && r.codes.length > 0);
+      const eligible = perClaimsMode ? withCodes.filter(r => r.perClaimsEligible) : withCodes;
       if (cb.checked) eligible.forEach(r => sel().add(r.id));
       else sel().clear();
     } else if (activeAR === 'wrap') {
       const rows = getActiveRows();
-      if (cb.checked) rows.forEach(r => selectedByAR['wrap'].add(r.id));
+      const eligible = rows.filter(r => r.codes && r.codes.length > 0);
+      if (cb.checked) eligible.forEach(r => selectedByAR['wrap'].add(r.id));
       else selectedByAR['wrap'].clear();
     }
     renderTable();
@@ -2475,9 +2482,13 @@
       }
 
       var isSent = row.sent === true;
+      var rowHasNoCodes = (is301 || isWrap) && (!row.codes || row.codes.length === 0);
+      // Auto-deselect empty-code rows
+      if (rowHasNoCodes) { SEC_SELECTED[key].delete(row.id); SEC_SELECTED_WRAP[key].delete(row.id); isSel = false; }
 
       var tr = document.createElement('tr');
       if (isSel) tr.classList.add('row-selected');
+      if (rowHasNoCodes) tr.classList.add('row-disabled');
       // 231 rows remain non-interactive (pointer-events: none)
       if (is231) tr.style.pointerEvents = 'none';
 
@@ -2489,7 +2500,9 @@
           var cb = document.createElement('input');
           cb.type    = 'checkbox';
           cb.checked = isSel;
-          if (is301) {
+          if (rowHasNoCodes) {
+            cb.disabled = true;
+          } else if (is301) {
             cb.addEventListener('change',
               (function(k, id, c) {
                 return function() { secRowCheck(k, id, false, c); };
@@ -2601,11 +2614,11 @@
   function secSelectAll(key, cb) {
     if (activeAR === '231') return;
     if (activeAR === 'wrap') {
-      var allWrap = SEC_DATA[key]['wrap'].rows;
+      var allWrap = SEC_DATA[key]['wrap'].rows.filter(function(r) { return r.codes && r.codes.length > 0; });
       if (cb.checked) allWrap.forEach(function(r) { SEC_SELECTED_WRAP[key].add(r.id); });
       else            SEC_SELECTED_WRAP[key].clear();
     } else {
-      var all301 = SEC_DATA[key]['301'].rows;
+      var all301 = SEC_DATA[key]['301'].rows.filter(function(r) { return r.codes && r.codes.length > 0; });
       if (cb.checked) all301.forEach(function(r) { SEC_SELECTED[key].add(r.id); });
       else SEC_SELECTED[key].clear();
     }
@@ -2627,8 +2640,7 @@
       return;
     }
     if (activeAR === 'wrap') {
-      // All WRAP rows are independently selectable via SEC_SELECTED_WRAP
-      var allWrap    = SEC_DATA[key]['wrap'].rows;
+      var allWrap = SEC_DATA[key]['wrap'].rows.filter(function(r) { return r.codes && r.codes.length > 0; });
       var wrapChecked = allWrap.filter(function(r) { return SEC_SELECTED_WRAP[key].has(r.id); }).length;
       cb.checked       = allWrap.length > 0 && wrapChecked === allWrap.length;
       cb.indeterminate = wrapChecked > 0 && wrapChecked < allWrap.length;
@@ -2636,7 +2648,7 @@
       return;
     }
     // 301
-    var rows301 = SEC_DATA[key]['301'].rows;
+    var rows301 = SEC_DATA[key]['301'].rows.filter(function(r) { return r.codes && r.codes.length > 0; });
     var all  = rows301.length > 0 && rows301.every(function(r) { return SEC_SELECTED[key].has(r.id); });
     var some = rows301.some(function(r) { return SEC_SELECTED[key].has(r.id); });
     cb.checked       = all;
