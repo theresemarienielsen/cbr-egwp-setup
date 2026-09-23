@@ -426,7 +426,7 @@
     .sync-label { font-size:12px; color:var(--text-secondary); }
 
     .as-bl-chip { display:inline-flex; align-items:center; background:#f2efeb; border:1px dashed #767471; border-radius:8px; padding:0 10px; font-size:14px; height:32px; white-space:nowrap; box-sizing:border-box; }
-    .as-frd-title { font-size:22px; font-weight:700; margin-bottom:12px; }
+    .as-frd-title { font-size:22px; font-weight:700; margin-bottom:32px; }
     .as-section-title { font-size:18px; font-weight:500; margin:20px 0 16px; padding-bottom:0; border-bottom:none; }
     .as-fields-row { display:flex; align-items:flex-end; gap:16px; flex-wrap:wrap; margin-bottom:24px; }
     .as-field { display:flex; flex-direction:column; gap:8px; min-width:0; }
@@ -3163,11 +3163,8 @@
 
     var h = '';
 
-    // Page header
-    h += '<div class="page-header"><h2 class="page-title">AR Setup</h2></div>';
-
     // Billing Level chip + Sync FAF + last synced
-    h += '<div style="display:flex;align-items:flex-end;gap:14px;margin-bottom:14px;flex-wrap:wrap;">' +
+    h += '<div style="display:flex;align-items:flex-end;gap:14px;margin-bottom:24px;flex-wrap:wrap;">' +
          '<div class="as-field">' +
            '<div class="as-fl">Billing FAF</div>' +
            '<span class="as-bl-chip">CARRIER</span>' +
