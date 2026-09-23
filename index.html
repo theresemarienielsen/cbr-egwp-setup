@@ -428,7 +428,7 @@
     .as-bl-chip { display:inline-flex; align-items:center; background:#f2efeb; border:1px dashed #767471; border-radius:8px; padding:0 10px; font-size:14px; height:32px; white-space:nowrap; box-sizing:border-box; }
     .as-frd-title { font-size:22px; font-weight:700; margin-bottom:12px; }
     .as-section-title { font-size:18px; font-weight:500; margin:20px 0 16px; padding-bottom:0; border-bottom:none; }
-    .as-fields-row { display:flex; align-items:flex-end; gap:16px; flex-wrap:wrap; margin-bottom:16px; }
+    .as-fields-row { display:flex; align-items:flex-end; gap:16px; flex-wrap:wrap; margin-bottom:24px; }
     .as-field { display:flex; flex-direction:column; gap:8px; min-width:0; }
     .as-fl { font-size:14px; font-weight:700; color:#474644; white-space:nowrap; }
     .as-vc { display:inline-flex; align-items:center; padding:0 8px; background:#f2efeb; border:1px dashed #767471; border-radius:8px; font-size:14px; height:32px; white-space:nowrap; box-sizing:border-box; overflow:hidden; text-overflow:ellipsis; }
@@ -453,7 +453,7 @@
     .as-ar-inline-lbl { font-size:12px; font-weight:700; color:var(--text-secondary); }
     .as-divider { border:none; border-top:1px solid #ccc9c6; margin:20px 0; }
     .as-check-row { display:flex; align-items:center; gap:16px; margin-bottom:6px; flex-wrap:wrap; }
-    .payment-structure-checkboxes { display:flex; flex-direction:row; align-items:center; gap:24px; flex-wrap:nowrap; margin-bottom:32px; }
+    .payment-structure-checkboxes { display:flex; flex-direction:row; align-items:center; gap:24px; flex-wrap:nowrap; margin-bottom:24px; }
     .as-check-item { display:flex; align-items:center; gap:6px; font-size:14px; cursor:pointer; user-select:none; }
     .as-check-item input[type=checkbox] { cursor:pointer; }
     .as-fee-tabs-wrapper { border-bottom:1px solid #ccc9c6; margin-bottom:0; }
@@ -3207,7 +3207,7 @@
          '</div>';
 
     // 301 — daily indicator + eff date (Invoice at Month End removed)
-    h += '<div class="as-fields-row" style="align-items:flex-end;margin-top:4px;">' +
+    h += '<div class="as-fields-row" style="align-items:flex-end;">' +
          '<label class="as-check-item"><input type="checkbox" checked> Daily Indicator</label>' +
          _asF('Daily Eff Date', '<input class="as-fi" style="width:145px" type="date" value="2027-01-01">') +
          '</div>';
@@ -3243,7 +3243,7 @@
          '</div>';
 
     // WRAP — daily indicator + eff date (Invoice at Month End removed)
-    h += '<div class="as-fields-row" style="align-items:flex-end;margin-top:4px;">' +
+    h += '<div class="as-fields-row" style="align-items:flex-end;">' +
          '<label class="as-check-item"><input type="checkbox" checked> Daily Indicator</label>' +
          _asF('Daily Eff Date', '<input class="as-fi" style="width:145px" type="date" value="2027-01-01">') +
          '</div>';
