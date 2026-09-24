@@ -168,7 +168,6 @@
     .fee-table tbody tr td { padding: 0 8px; height: 32px; border-top: 1px solid var(--table-border); vertical-align: middle; font-size: 14px; color: var(--table-text); }
     .fee-table tbody tr:first-child td { border-top: none; }
     .fee-table tbody tr.row-selected td { background: var(--table-selected-bg); }
-    .fee-table tbody tr.row-selected:hover td { background: var(--table-selected-hover); }
     .fee-table tbody tr.row-disabled td { pointer-events: none; }
     .fee-table tbody tr.row-disabled td:not(.col-check) { opacity: 0.45; }
     .fee-table tbody tr.row-disabled td.col-check { opacity: 1; }
@@ -207,10 +206,6 @@
     #mainTable tbody tr.row-selected td:nth-child(2),
     #mainTable tbody tr.row-selected td:nth-child(3),
     #mainTable tbody tr.row-selected td:nth-child(4) { background: var(--table-selected-bg); }
-    #mainTable tbody tr.row-selected:hover td:nth-child(1),
-    #mainTable tbody tr.row-selected:hover td:nth-child(2),
-    #mainTable tbody tr.row-selected:hover td:nth-child(3),
-    #mainTable tbody tr.row-selected:hover td:nth-child(4) { background: var(--table-selected-hover); }
     #mainTable thead tr:first-child th:nth-child(1),
     #mainTable .filter-row td:nth-child(1),
     #mainTable tbody tr td:nth-child(1) { left: 0; }
@@ -241,9 +236,7 @@
       background: var(--table-header-bg); position: sticky; z-index: 3;
     }
     .fee-table tbody tr td.frozen-col              { background: #fff; position: sticky; z-index: 1; }
-    .fee-table tbody tr:hover td.frozen-col         { background: var(--table-hover-bg); }
     .fee-table tbody tr.row-selected td.frozen-col  { background: var(--table-selected-bg); }
-    .fee-table tbody tr.row-selected:hover td.frozen-col { background: var(--table-selected-hover); }
     th.frozen-divider, .filter-row td.frozen-divider, td.frozen-divider {
       box-shadow: 3px 0 5px -2px rgba(0,0,0,0.1); position: relative;
     }
@@ -307,7 +300,7 @@
     .drawer.open { transform: translateX(0); }
     .drawer-header { display: flex; align-items: center; justify-content: space-between; padding: 18px 24px; border-bottom: 1px solid var(--border-light); }
     .drawer-title { font-size: 22px; font-weight: 700; }
-    .drawer-close { background: none; border: none; cursor: pointer; font-size: 22px; color: #555; line-height: 1; padding: 0; }
+    .drawer-close { background: none; border: none; cursor: pointer; color: #555; line-height: 1; padding: 0; display: flex; align-items: center; }
     .drawer-close:hover { color: var(--text-primary); }
     .drawer-body { flex: 1; overflow-y: auto; padding: 16px 24px; }
     .drawer-info-msg { display: flex; align-items: flex-start; gap: 7px; font-size: 14px; color: var(--text-secondary); line-height: 1.5; margin-bottom: 20px; }
@@ -344,15 +337,16 @@
     /* ── MODAL ────────────────────────────────────────── */
     .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.32); z-index: 400; align-items: center; justify-content: center; }
     .modal-overlay.open { display: flex; }
-    .modal { background: #fff; border-radius: 8px; box-shadow: 0 8px 32px rgba(0,0,0,0.18); width: 900px; max-width: 94vw; height: 560px; display: flex; flex-direction: column; overflow: hidden; }
+    .modal { background: #fff; border-radius: 8px; box-shadow: 0 8px 32px rgba(0,0,0,0.18); width: 900px; max-width: 94vw; max-height: 85vh; display: flex; flex-direction: column; overflow: hidden; }
     .modal-header { display: flex; align-items: center; justify-content: space-between; padding: 22px 28px 0; flex-shrink: 0; }
     .modal-title { font-size: 18px; font-weight: 700; }
-    .modal-close { background: none; border: none; cursor: pointer; font-size: 22px; color: #555; line-height: 1; padding: 0; }
+    .modal-close { background: none; border: none; cursor: pointer; color: #555; line-height: 1; padding: 0; display: flex; align-items: center; }
     .modal-close:hover { color: var(--text-primary); }
     .modal-subtitle { font-size: 13px; color: var(--text-secondary); padding: 0 28px 0; margin-top: 32px; flex-shrink: 0; }
     .modal-tabs-area { padding: 14px 28px 0; flex-shrink: 0; }
-    .modal-tabs-area .ar-tabs-wrapper { margin-bottom: 0; }
+    .modal-tabs-area .ar-tabs-wrapper { margin-bottom: 24px; }
     .modal-table-area { flex: 1; overflow-y: auto; padding: 0 28px; }
+    .modal-row-count { font-size: 13px; color: var(--text-secondary); padding: 7px 28px 16px; flex-shrink: 0; }
     .modal-footer { display: flex; gap: 12px; align-items: center; padding: 14px 28px; border-top: 1px solid var(--border-light); flex-shrink: 0; }
     .modal-table-wrapper { border: 1px solid var(--table-border); border-radius: 4px; overflow: hidden; }
     .modal-review-table { width: 100%; border-collapse: collapse; font-size: 13px; }
@@ -364,8 +358,9 @@
     .modal-col-faf { white-space: nowrap; color: var(--text-secondary); }
     .modal-col-amt { text-align: right; white-space: nowrap; }
     .modal-col-date { white-space: nowrap; color: var(--text-secondary); }
-    .modal-row-count { font-size: 13px; color: var(--text-secondary); padding: 7px 2px 0; }
+
     .modal-row-highlight td { background: var(--row-selected-bg); }
+    .col-more-vert { width: 28px; padding: 0 4px !important; text-align: right; }
     .btn-send { padding: 10px 24px; background: var(--blue-primary); color: #fff; border: 2px solid var(--blue-primary); border-radius: 100px; font-size: 14px; font-weight: 700; cursor: pointer; }
     .btn-send:hover { background: #002570; border-color: #002570; }
     .btn-go-back { padding: 10px 24px; background: #fff; color: var(--blue-primary); border: 2px solid var(--blue-primary); border-radius: 100px; font-size: 14px; font-weight: 700; cursor: pointer; }
@@ -456,12 +451,12 @@
     .payment-structure-checkboxes { display:flex; flex-direction:row; align-items:center; gap:24px; flex-wrap:nowrap; margin-bottom:24px; }
     .as-check-item { display:flex; align-items:center; gap:6px; font-size:14px; cursor:pointer; user-select:none; }
     .as-check-item input[type=checkbox] { cursor:pointer; }
-    .as-fee-tabs-wrapper { border-bottom:1px solid #ccc9c6; margin-bottom:0; }
+    .as-fee-tabs-wrapper { border-bottom:1px solid #ccc9c6; margin-bottom:24px; }
     .as-fee-tabs { display:flex; gap:0; }
-    .as-fee-tab { display:flex; align-items:center; gap:8px; padding:10px 24px 10px 0; background:none; border:none; border-bottom:3px solid transparent; margin-bottom:-2px; cursor:pointer; font-size:14px; color:var(--text-secondary); white-space:nowrap; }
+    .as-fee-tab { display:flex; align-items:center; gap:8px; padding:10px 24px 10px 0; background:none; border:none; border-bottom:4px solid transparent; margin-bottom:-2px; cursor:pointer; font-size:14px; color:var(--text-secondary); white-space:nowrap; }
     .as-fee-tab + .as-fee-tab { padding-left:20px; }
     .as-fee-tab.active { color:var(--tab-active); border-bottom-color:var(--tab-active); font-weight:700; }
-    .as-fee-panel { display:none; padding-top:8px; }
+    .as-fee-panel { display:none; padding-top:0; }
     .as-fee-panel.active { display:block; }
     .as-table-meta { display:flex; align-items:center; gap:8px; padding:6px 0 8px; font-size:12px; color:var(--text-secondary); }
     .as-ps-select { padding:2px 4px; border:1px solid var(--border); border-radius:3px; font-size:12.5px; cursor:pointer; }
@@ -470,7 +465,6 @@
     .as-fee-table thead tr:first-child th { background:var(--table-header-bg); padding:0 8px; height:40px; text-align:left; font-weight:700; font-size:14px; color:var(--table-header-text); border-bottom:1px solid var(--table-border); white-space:nowrap; }
     .as-fee-table td { padding:0 8px; height:32px; border-top:1px solid var(--table-border); border-bottom:none; vertical-align:middle; font-size:14px; color:var(--table-text); }
     .as-fee-table tbody tr:first-child td { border-top:none; }
-    .as-fee-table tbody tr:hover td { background:var(--table-hover-bg); }
     .as-filter-row td { padding:8px 6px; height:48px; background:var(--table-header-bg); border-bottom:1px solid var(--table-border); vertical-align:middle; }
     .as-pager-row { display:flex; align-items:center; justify-content:flex-end; padding:10px 10px 6px; font-size:12.5px; color:var(--text-secondary); gap:10px; }
     .as-pager-btns { display:flex; align-items:center; gap:2px; }
@@ -499,7 +493,6 @@
     .pf-table { width:100%; border-collapse:collapse; font-size:12px; }
     .pf-table th { background:#f2efeb; padding:6px 10px; text-align:left; font-size:11px; font-weight:600; color:var(--text-secondary); border:1px solid var(--border-light); white-space:nowrap; }
     .pf-table td { padding:6px 10px; border:1px solid var(--border-light); vertical-align:middle; }
-    .pf-table tr:hover td { background:#f8f7f5; }
     .pf-sent { color:#4DB21B; font-weight:600; }
     .pf-pending { color:var(--text-secondary); }
     .pf-chip { display:inline-flex; align-items:center; padding:1px 7px; background:#f2efeb; border:1px solid #ccc9c6; border-radius:10px; font-size:11px; font-weight:500; margin:1px 2px 1px 0; }
@@ -603,7 +596,7 @@
                 <th><div class="col-header"><span class="col-label">Fee Type</span><span class="col-icon menu-icon" title="Menu"></span><span class="col-resize"></span></div></th>
                 <th><div class="col-header"><span class="col-label">Material Code(s)</span><span class="col-icon menu-icon" title="Menu"></span><span class="col-resize"></span></div></th>
                 <th><div class="col-header"><span class="col-label">Status</span><span class="col-icon menu-icon" title="Menu"></span><span class="col-resize"></span></div></th>
-                <th><div class="col-header"><span class="col-label">FAF(s)</span><span class="col-icon menu-icon" title="Menu"></span><span class="col-resize"></span></div></th>
+                <th><div class="col-header"><span class="col-label">FAF</span><span class="col-icon menu-icon" title="Menu"></span><span class="col-resize"></span></div></th>
                 <th><div class="col-header"><span class="col-label">Year</span><span class="col-icon menu-icon" title="Menu"></span><span class="col-resize"></span></div></th>
                 <th><div class="col-header"><span class="col-label">LOB</span><span class="col-icon menu-icon" title="Menu"></span><span class="col-resize"></span></div></th>
                 <th><div class="col-header"><span class="col-label">Base Amt</span><span class="col-icon menu-icon" title="Menu"></span><span class="col-resize"></span></div></th>
@@ -614,6 +607,7 @@
                 <th><div class="col-header"><span class="col-label">Lvl 3</span><span class="col-icon menu-icon" title="Menu"></span><span class="col-resize"></span></div></th>
                 <th><div class="col-header"><span class="col-label">Valid From</span><span class="col-icon menu-icon" title="Menu"></span><span class="col-resize"></span></div></th>
                 <th><div class="col-header"><span class="col-label">Valid To</span><span class="col-icon menu-icon" title="Menu"></span><span class="col-resize"></span></div></th>
+                <th class="col-more-vert"></th>
               </tr>
               <tr class="filter-row">
                 <td class="col-check"></td>
@@ -631,6 +625,7 @@
                 <td><div class="filter-cell"><span class="filter-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1.5 1.5h11L8 8v4L6 11V8L1.5 1.5z" fill="#1a1a19"/></svg></span></div></td>
                 <td><div class="filter-cell"><span class="filter-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1.5 1.5h11L8 8v4L6 11V8L1.5 1.5z" fill="#1a1a19"/></svg></span></div></td>
                 <td><div class="filter-cell"><span class="filter-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1.5 1.5h11L8 8v4L6 11V8L1.5 1.5z" fill="#1a1a19"/></svg></span></div></td>
+                <td class="col-more-vert"></td>
               </tr>
             </thead>
             <tbody id="tableBody"></tbody>
@@ -925,7 +920,7 @@
 <div class="drawer" id="batchDrawer">
   <div class="drawer-header">
     <div class="drawer-title">Batch Update</div>
-    <button class="drawer-close" onclick="closeOverlay()">&#215;</button>
+    <button class="drawer-close" onclick="closeOverlay()"><img src="/Users/c723749/Downloads/close.png" width="24" height="24" style="display:block;"></button>
   </div>
   <div class="drawer-body">
     <div class="drawer-info-msg">
@@ -967,7 +962,7 @@
 <div class="drawer" id="fafNotesDrawer">
   <div class="drawer-header">
     <div class="drawer-title">FAF Notes</div>
-    <button class="drawer-close" onclick="closeOverlay()">&#215;</button>
+    <button class="drawer-close" onclick="closeOverlay()"><img src="/Users/c723749/Downloads/close.png" width="24" height="24" style="display:block;"></button>
   </div>
   <div class="drawer-body">
     <select class="faf-selector" id="fafNotesSelector" onchange="renderFafNotes()"></select>
@@ -980,7 +975,7 @@
   <div class="modal">
     <div class="modal-header">
       <div class="modal-title">Review &amp; Send to AR Setup</div>
-      <button class="modal-close" onclick="closeModal()">&#215;</button>
+      <button class="modal-close" onclick="closeModal()"><img src="/Users/c723749/Downloads/close.png" width="24" height="24" style="display:block;"></button>
     </div>
     <div class="modal-subtitle">Highlighted rows will be sent to the Pricing Table.</div>
     <div class="modal-tabs-area">
@@ -1016,13 +1011,14 @@
               <th class="modal-col-amt">Fee Amount</th>
               <th>Valid From</th>
               <th>Valid To</th>
+              <th class="col-more-vert"></th>
             </tr>
           </thead>
           <tbody id="modalTableBody"></tbody>
         </table>
       </div>
-      <div class="modal-row-count" id="modalRowCount"></div>
     </div>
+    <div class="modal-row-count" id="modalRowCount"></div>
     <div class="modal-footer">
       <button class="btn-send" onclick="sendFeeUpdates()">Send Updates to Pricing Table</button>
       <button class="btn-go-back" onclick="closeModal()">Cancel</button>
@@ -1112,6 +1108,7 @@
   let hasChanges = false;
   const fieldValues = {};
 
+  const MORE_VERT_TD = '<td class="col-more-vert"><img src="/Users/c723749/Desktop/table/_ag-grid/header-cell/more-vertical--s.png" width="16" height="16" style="display:block;opacity:0.5;margin-left:auto;"></td>';
   const CLOCK_SVG = `<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAOdEVYdFNvZnR3YXJlAEZpZ21hnrGWYwAAAZ1JREFUeAGNUzFuwlAMtX9FUBWJUrGkhCHcIGwd4Qbt1g3YulU9QdUbtFPHwgno2qncAG7AH/iQMZWyJJD82vwAEYIKSxB/+z3n+dtBODDXdXsAWRcAfa11FRFDAD0FEEOl1KCIxa3jeY6XJDgi14fTJi1Ld6QMJB9EgfiTEyUiPFtW+XqxWGKW6Sai7nOcoYxj/I6cEznwRaSWUsu39XrtNxqNdhAEUqlgwHHO5wVGG9nco9bZp5FUbkkpQ8dxPCFwxjF6e3PfmldNknjCLqLoC3M5VAX1KxPhv4YpTy29m1PWFXyr7KYpjOEMK5XKA35qDb7gcfCBezuHXFBXFWaOpp8jWK9ev5mZ2eeB/KbJQmEWACCO4x2AVQihO1SYcx5fKBfh3Gp10eYn9T5l8jA/PBXfPp8HY6UWrf2Mccx5KvRiEIZHK1mfUGVNv9EJ+Ru5nM9xGxUX/Gfb9jdJvCP3Nk3Th0rl6rdWs8MwjEIuZtuXj2mKH5xnFbR1nSiKwt1u54ux3bRTNiXi/XYyeJh1XadH4SNflR7ymhaxf6OwxWDs/HGHAAAAAElFTkSuQmCC" width="16" height="16" style="display:block;">`;
   const CHECK_IMG  = `<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAANCAYAAACZ3F9/AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAOdEVYdFNvZnR3YXJlAEZpZ21hnrGWYwAAANhJREFUeAGtkcENgjAUhvt6wKtHKJeu4AhsgCO4gU5gmIARcAPcADdwBHoghKNXacKzz9KDDcaS+Ccv6Wvy9b3/L2MrJIQ4U9EZVkA5Y1jTmXPMeAgkZSwNVNoOi64bbgGQ3AqRtKbQTK3c/c+JWo80SZpSURSdWIhsGDQpaeOY1vX2T9OkpJU8KJ8htMF8imsNFSI7juOzcTA9BsBmP1j0fX/1QaAVOIfG+QDge8Sptj1cDHRYsvH+Rw92MmFsdkqpx1dwAVbThNkwDIqFiDymqbgvhfE3vQA7N0iRX6inpgAAAABJRU5ErkJggg==" width="16" height="16" style="display:block;">`;
 
@@ -1276,7 +1273,8 @@
         '<td>' + (row.lvl2 || '') + '</td>' +
         '<td>' + (row.lvl3 || '') + '</td>' +
         fromCell +
-        toCell;
+        toCell +
+        MORE_VERT_TD;
 
       tbody.appendChild(tr);
     });
@@ -2014,7 +2012,7 @@
 
     if (entries.length === 0) {
       const tr = document.createElement('tr');
-      tr.innerHTML = '<td colspan="7" style="padding:16px 12px;color:var(--text-secondary);font-style:italic;">No rows for this AR.</td>';
+      tr.innerHTML = '<td colspan="8" style="padding:16px 12px;color:var(--text-secondary);font-style:italic;">No rows for this AR.</td>';
       tbody.appendChild(tr);
     } else {
       entries.forEach(({ row, isPending }) => {
@@ -2029,7 +2027,8 @@
             '<td>Billing Admin</td>' +
             '<td class="modal-col-amt">' + row.baseAmt + '</td>' +
             '<td class="modal-col-date">' + (row.validFrom || '&mdash;') + '</td>' +
-            '<td class="modal-col-date">' + (row.validTo || '&mdash;') + '</td>';
+            '<td class="modal-col-date">' + (row.validTo || '&mdash;') + '</td>' +
+            MORE_VERT_TD;
           tbody.appendChild(tr);
           rowCount++;
         });
@@ -2231,7 +2230,7 @@
         { key:'description', label:'Fee Description', type:CT_TEXT,     frozen:true,  divider:false, width:200 },
         { key:'codes',       label:'Material Code(s)',type:CT_CHIPS,    frozen:true,  divider:false, width:160 },
         { key:'status',      label:'Status',          type:CT_STATUS,   frozen:true,  divider:true,  width:80  },
-        { key:'fafs',        label:'FAF(s)',           type:CT_TEXT,     frozen:false, divider:false, width:120 },
+        { key:'fafs',        label:'FAF',           type:CT_TEXT,     frozen:false, divider:false, width:120 },
         { key:'year',        label:'Year',             type:CT_TEXT,   frozen:false, divider:false, width:70  },
         { key:'lob',         label:'LOB',              type:CT_TEXT,   frozen:false, divider:false, width:70  },
         { key:'type',        label:'Type',             type:CT_TEXT,   frozen:false, divider:false, width:130 },
@@ -2251,7 +2250,7 @@
         { key:'description', label:'Fee Description', type:CT_TEXT,     frozen:true,  divider:false, width:260 },
         { key:'codes',       label:'Material Code(s)',type:CT_CHIPS,    frozen:true,  divider:false, width:160 },
         { key:'status',      label:'Status',          type:CT_STATUS,   frozen:true,  divider:true,  width:80  },
-        { key:'fafs',        label:'FAF(s)',           type:CT_TEXT,     frozen:false, divider:false, width:120 },
+        { key:'fafs',        label:'FAF',           type:CT_TEXT,     frozen:false, divider:false, width:120 },
         { key:'basis',       label:'Basis',            type:CT_TEXT,   frozen:false, divider:false, width:180 },
         { key:'amount',      label:'Fee Amount',       type:CT_TEXT,   frozen:false, divider:false, width:110 },
         { key:'validFrom',   label:'Valid From',       type:CT_DATE,   frozen:false, divider:false, width:120 },
@@ -2268,7 +2267,7 @@
         { key:'description', label:'Fee Description', type:CT_TEXT,     frozen:true,  divider:false, width:220 },
         { key:'codes',       label:'Material Code(s)',type:CT_CHIPS,    frozen:true,  divider:false, width:160 },
         { key:'status',      label:'Status',          type:CT_STATUS,   frozen:true,  divider:true,  width:80  },
-        { key:'fafs',        label:'FAF(s)',           type:CT_TEXT,     frozen:false, divider:false, width:120 },
+        { key:'fafs',        label:'FAF',           type:CT_TEXT,     frozen:false, divider:false, width:120 },
         { key:'year',        label:'Year',             type:CT_TEXT,   frozen:false, divider:false, width:60  },
         { key:'feeType',     label:'Fee Type',         type:CT_TEXT,   frozen:false, divider:false, width:160 },
         { key:'basis',       label:'Basis',            type:CT_TEXT,   frozen:false, divider:false, width:120 },
@@ -2287,7 +2286,7 @@
         { key:'solution',    label:'Clinical Solution',  type:CT_TEXT,     frozen:true,  divider:false, width:280 },
         { key:'codes',       label:'Material Code(s)',  type:CT_CHIPS,    frozen:true,  divider:false, width:160 },
         { key:'status',      label:'Status',            type:CT_STATUS,   frozen:true,  divider:true,  width:80  },
-        { key:'fafs',        label:'FAF(s)',             type:CT_TEXT,     frozen:false, divider:false, width:120 },
+        { key:'fafs',        label:'FAF',             type:CT_TEXT,     frozen:false, divider:false, width:120 },
         { key:'basis',     label:'Basis',              type:CT_TEXT,   frozen:false, divider:false, width:120 },
         { key:'amount',    label:'Fee Amount',         type:CT_TEXT,   frozen:false, divider:false, width:110 },
         { key:'validFrom', label:'Valid From',         type:CT_DATE,   frozen:false, divider:false, width:120 },
@@ -2442,6 +2441,9 @@
       }
       trH.appendChild(th);
     });
+    var thMV = document.createElement('th');
+    thMV.className = 'col-more-vert';
+    trH.appendChild(thMV);
     thead.appendChild(trH);
 
     // Filter row
@@ -2463,6 +2465,9 @@
       }
       trF.appendChild(td);
     });
+    var tdMVF = document.createElement('td');
+    tdMVF.className = 'col-more-vert';
+    trF.appendChild(tdMVF);
     thead.appendChild(trF);
 
     thead.querySelectorAll('.menu-icon').forEach(function(el) { el.innerHTML = SVG_MENU; });
@@ -2613,6 +2618,11 @@
 
         tr.appendChild(td);
       });
+
+      var tdMV = document.createElement('td');
+      tdMV.className = 'col-more-vert';
+      tdMV.innerHTML = '<img src="/Users/c723749/Desktop/table/_ag-grid/header-cell/more-vertical--s.png" width="16" height="16" style="display:block;opacity:0.5;margin-left:auto;">';
+      tr.appendChild(tdMV);
 
       tbody.appendChild(tr);
     });
@@ -2995,7 +3005,7 @@
 
     if (entries.length === 0) {
       var tr = document.createElement('tr');
-      tr.innerHTML = '<td colspan="7" style="padding:16px 12px;color:var(--text-secondary);font-style:italic;">No rows for this AR.</td>';
+      tr.innerHTML = '<td colspan="8" style="padding:16px 12px;color:var(--text-secondary);font-style:italic;">No rows for this AR.</td>';
       tbody.appendChild(tr);
     } else {
       entries.forEach(function(e) {
@@ -3008,7 +3018,8 @@
           '<td>' + e.feeTable + '</td>' +
           '<td class="modal-col-amt">' + e.amount + '</td>' +
           '<td class="modal-col-date">' + (e.validFrom || '—') + '</td>' +
-          '<td class="modal-col-date">' + (e.validTo   || '—') + '</td>';
+          '<td class="modal-col-date">' + (e.validTo   || '—') + '</td>' +
+          MORE_VERT_TD;
         tbody.appendChild(tr);
         rowCount++;
       });
@@ -3358,13 +3369,12 @@
     out += '<div class="as-table-wrap"><table class="as-fee-table">';
     out += '<thead>';
     out += '<tr>';
-    out += '<th>Material Code(s) <span style="opacity:.4;font-size:10px;">&#8597;</span></th>';
-    out += '<th>FAF <span style="opacity:.4;font-size:10px;">&#8597;</span></th>';
-    out += '<th>Description <span style="opacity:.4;font-size:10px;">&#8597;</span></th>';
-    out += '<th>Fee <span style="opacity:.4;font-size:10px;">&#8597;</span></th>';
-    out += '<th>Valid From <span style="opacity:.4;font-size:10px;">&#8597;</span></th>';
-    out += '<th>Valid To <span style="opacity:.4;font-size:10px;">&#8597;</span></th>';
-    out += '<th style="width:24px;"></th>';
+    out += '<th>Material Code</th>';
+    out += '<th>Description</th>';
+    out += '<th>Fee</th>';
+    out += '<th>Valid From</th>';
+    out += '<th>Valid To</th>';
+    out += '<th class="col-more-vert"></th>';
     out += '</tr>';
     var asFSVG = '<span class="filter-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1.5 1.5h11L8 8v4L6 11V8L1.5 1.5z" fill="#1a1a19"/></svg></span>';
     out += '<tr class="as-filter-row">';
@@ -3373,24 +3383,22 @@
     out += '<td><div class="filter-cell"><input type="text" tabindex="-1">' + asFSVG + '</div></td>';
     out += '<td><div class="filter-cell"><input type="text" tabindex="-1">' + asFSVG + '</div></td>';
     out += '<td><div class="filter-cell"><input type="text" tabindex="-1">' + asFSVG + '</div></td>';
-    out += '<td><div class="filter-cell"><input type="text" tabindex="-1">' + asFSVG + '</div></td>';
-    out += '<td></td>';
+    out += '<td class="col-more-vert"></td>';
     out += '</tr>';
     out += '</thead>';
     out += '<tbody>';
 
     if (!pfRows.length) {
-      out += '<tr><td colspan="7" class="as-empty-state">No Rows To Show</td></tr>';
+      out += '<tr><td colspan="6" class="as-empty-state">No Rows To Show</td></tr>';
     } else {
       pfRows.forEach(function(r) {
         out += '<tr>';
         out += '<td><strong>' + (r.code || '—') + '</strong></td>';
-        out += '<td>' + (r.fafNum || fafNum) + '</td>';
         out += '<td>' + (r.feeType || '—') + '</td>';
         out += '<td>' + (r.baseAmt || '—') + '</td>';
         out += '<td>' + (r.validFrom || '—') + '</td>';
         out += '<td>' + (r.validTo || '12/31/9999') + '</td>';
-        out += '<td></td>';
+        out += MORE_VERT_TD;
         out += '</tr>';
       });
     }
